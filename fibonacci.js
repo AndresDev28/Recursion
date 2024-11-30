@@ -1,3 +1,5 @@
+const prompt = require('prompt-sync')();
+
 // Fibonacci usando iteración
 
 function fibs(n) {
@@ -22,45 +24,43 @@ function fibs(n) {
   return matrix
 }
 
-console.log('Fibo de 8')
-console.log(fibs(8));
-console.log('Fibo de 10')
-console.log(fibs(10));
-console.log('Fibo de 12')
-console.log(fibs(12));
 
 // Fibonacci usando recursión
 
-function fibsRecur(n) {
-  // Inicializamos la matriz
-  let matrix = [0, 1];
-  // Si n es igual a 0 devolvemos la matriz vacía
+function fibsRec(n) {
+  // Caso base: si n es 0, devolver una matriz vacía
   if (n === 0) {
-    matrix = [];
+    return [];
   }
-  // Si n es igual a 1 el valor de la matriz es igual a 0
+  
+  // Caso base: si n es 1, devolver [0]
   if (n === 1) {
-    matrix = [0];
+    return [0];
   }
-  // Si n es igual a 2 devolver [0, 1]
+  
+  // Caso base: si n es 2, devolver [0, 1]
   if (n === 2) {
-    matrix = [0, 1];
+    return [0, 1];
   }
-
-  // Caso recursivo: obtener la matriz hasta n -1
-  let previosMatrix =  fibsRecur(n - 1);
-  // Calcular el siguiente numero de la seguencia
-  let nextNumber = previosMatrix[previosMatrix.length - 1] + previosMatrix[previosMatrix.length - 2];
+  
+  // Caso recursivo: obtener la matriz hasta n - 1
+  let previousMatrix = fibsRec(n - 1);
+  
+  // Calcular el siguiente número en la secuencia
+  let nextNumber = previousMatrix[previousMatrix.length - 1] + previousMatrix[previousMatrix.length - 2];
+  
   // Agregar el nuevo número a la matriz
-  previosMatrix.push(nextNumber);
+  previousMatrix.push(nextNumber);
+  
   // Devolver la matriz completa
-  matrix.push(previosMatrix);
+  return previousMatrix;
 }
 
+const input = prompt('Enter a number: ');
+const n = parseInt(input, 10);
+
+console.log('Fibonacci iterativo:');
+console.log(fibs(n));
 console.log('Fibonacci recursivo:')
-console.log('Fibo de 8')
-console.log(fibs(8));
-console.log('Fibo de 10')
-console.log(fibs(10));
-console.log('Fibo de 12')
-console.log(fibs(12));
+console.log(fibsRec(n));
+
