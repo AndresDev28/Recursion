@@ -1,4 +1,4 @@
-# The Odin Project (Recursion Assignement)
+# The Odin Project (Recursion Assignment)
 
 # Fibonacci Sequence Generator
 
